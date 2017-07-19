@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="main" basedir=".">
+
+	<property name="source" value="${basedir}/src" />
+	<property name="classes" value="${basedir}/build/classes" />
+	<property name="tomcat-lib" value="D:/tomcat7/lib" />
+
+	<path id="depend-classpath">
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${tomcat-lib}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="main" depends="clean, compile, archive" description="Main">
+		<echo>全部任务完成</echo>
+	</target>
+
+	<target name="clean" description="清理">
+		<echo>清理ing</echo>
+		<delete dir="${classes}" />
+		<mkdir dir="${classes}" />
+	</target>
+
+	<target name="compile" description="编译">
+		<echo>编译ing</echo>
+		<javac debug="no" srcdir="${source}" destdir="${classes}" includeantruntime="true" encoding="UTF-8">
+			<classpath refid="depend-classpath">
+			</classpath>
+			<compilerarg line="-g:source,lines,vars -encoding UTF-8 "/>
+		</javac>
+	</target>
+
+	<target name="archive" description="归档">
+		<echo>归档ing</echo>
+		<jar jarfile="lib/org-json.jar">
+			<fileset dir="${classes}">
+				<include name="org/json/**" />
+			</fileset>
+		</jar>
+		<echo>[org-json.jar]完成</echo>
+		<jar jarfile="lib/javakit-0.0.0.jar">
+			<fileset dir="${classes}">
+				<include name="javakit/**" />
+			</fileset>
+		</jar>
+		<echo>[javakit-0.0.0.jar]完成</echo>
+		<jar jarfile="lib/xfree-fb-0.0.0.jar">
+			<fileset dir="${classes}">
+				<include name="xfree/fb/**" />
+			</fileset>
+		</jar>
+		<echo>[xfree-fb-0.0.0.jar]完成</echo>
+	</target>
+
+</project>

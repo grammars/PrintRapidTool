@@ -1,0 +1,8 @@
+{
+"msid":"ms-apple",
+"sysLoginSecret":"github.com/gjk911",
+"centralHost":"localhost",
+"centralServlet":"http://localhost/dc/",
+"centralSrvSysLoginSecret":"10086110110110",
+"version":"0.0.0"
+}
